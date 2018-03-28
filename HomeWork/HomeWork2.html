@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HomeWork2</title>
+    <style>
+        fieldset {
+            border: 5px solid rgb(73, 98, 179);
+            width: 600px;
+            margin: auto;
+        }
+       text{
+           color:rgb(61, 61, 56);
+       }
+    </style>
+    <script>
+
+
+        function checkName() {
+            var name = document.getElementById("idName").value;
+            var namelen = name.length;
+            var re = /^[\u4e00-\u9fff]{2,}$/;
+            if (re.test(name)) {
+                document.getElementById("s").innerHTML = "<img src='Images/correct.jpg'>正確";
+                return true;
+            }
+            else if (namelen == 0) {
+                document.getElementById("s").innerHTML = "<img src='Images/error.png'><span style='color:Red'>姓名不可為空白";
+            }
+            else {
+                document.getElementById("s").innerHTML = "<span style='color:Red'>請輸入中文"
+                return true;
+            }
+        }
+        function checkPasword() {
+            var passowrd = document.getElementById("idPassword").value;
+            var passowrdlen = passowrd.length;
+            var re = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,30}$/;
+            // var re = ^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{6,}$/;
+            if (re.test(passowrd)) {
+                document.getElementById("s2").innerHTML = "<img src='Images/correct.jpg'>正確";
+                return true;
+            }
+            else if (passowrdlen == 0) {
+                document.getElementById("s2").innerHTML = "<img src='Images/error.png'><span style='color:Red'>密碼不可為空白"
+            }
+            else if (passowrdlen < 6) {
+                document.getElementById("s2").innerHTML = "<img src='Images/error.png'><span style='color:Red'>密碼請至少輸入6碼"
+            }
+            else {
+                document.getElementById("s2").innerHTML = "<img src='Images/error.png'><span style='color:Red'>請輸入英文"
+                return true;
+            }
+        }
+        function checkDate() {
+            var d = document.getElementById("idDate").value;
+            var dateArray = d.split("/")  
+            var theDate = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+            if(dateArray[2]!=theDate.getDate() || dateArray[1]-1!=theDate.getMonth()){
+            document.getElementById("s3").innerHTML = "<img src='Images/error.png'><span style='color:Red'>請輸入正確日期</span>";   
+            }
+            else{
+            document.getElementById("s3").innerHTML = "<img src='Images/correct.jpg'>正確"; 
+            }
+        }
+       
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("idName").addEventListener("blur",blur1);  
+            document.getElementById("idName").addEventListener("focus",focus1);  
+            document.getElementById("idName").addEventListener("change",change1);  
+              
+        });
+    
+        function blur1() {
+            checkName();   
+        }
+
+        function focus1(){
+        document.getElementById("idName").style.color="red";  
+        }
+
+        function change1() {
+            checkName();  
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("idPassword").addEventListener("blur",blur2);  
+            document.getElementById("idPassword").addEventListener("focus",focus2);  
+            document.getElementById("idPassword").addEventListener("change",change2);  
+         });
+    
+        function blur2() {
+            checkPasword();   
+        }
+
+        function focus2(){
+        document.getElementById("idPassword").style.color="red";  
+        }
+
+        function change2() {
+            checkPasword();  
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("idDate").addEventListener("blur",blur3);  
+            document.getElementById("idDate").addEventListener("focus",focus3);  
+            document.getElementById("idDate").addEventListener("change",change3);  
+         });
+    
+        function blur3() {
+            checkDate();   
+        }
+
+        function focus3(){
+        document.getElementById("idDate").style.color="red";  
+        }
+
+        function change3() {
+            checkDate();  
+        }
+
+        // function ondblclick(){
+        // document.getElementById("idName").value="";
+        // }
+    </script>
+    
+</head>
+
+<body>
+    <form action="#" method="get">
+        <fieldset>
+            <legend>Form Check</legend>
+            <div>
+                <label>姓名:</label>
+                <input type="text"  name=name1 value="請輸入姓名" id="idName">
+                <span id="s"></span>
+                <div>(1.不可空白，2.至少2個字以上，3必須全部字為中文字)</div>
+            </div>
+            <hr>
+            <div>
+                <label>密碼:</label>
+                <input type="text" name=password1 value="請輸入密碼" id="idPassword">
+                <span id="s2"></span>
+                <div>(1.不可空白，2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</div>
+            </div>
+            <hr>
+            <div>
+                <label>日期:</label>
+                <input type="text" name="date1" value="ex:2000/2/29" id="idDate">
+                <span id="s3"></span>
+                <div>(格式:西元年/月/日 yyyy/MM/dd)</div>
+            </div>
+            <hr>
+            <input type="submit" value="送出">
+            <input type="reset" value="清除">
+        </fieldset>
+    </form>
+</body>
+
+</html>
