@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<!--
+	Aesthetic by gettemplates.co
+	Twitter: http://twitter.com/gettemplateco
+	URL: http://gettemplates.co
+-->
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Chris's Website</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="html5,template,bootstrap,css3" />
+	<meta name="keywords" content="html5,template,bootstrap,css3" />
+	<meta name="author" content="Chris" />
+	<link rel="icon" href="images/img1.png">
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<style>
+		   fieldset {
+            border: 5px solid rgb(5, 5, 5);
+            width: 600px;
+			margin:auto;
+			
+        }
+
+        text {
+            color: rgb(61, 61, 56);
+        }
+        .a1{color: rgb(72, 29, 192);
+        margin-left:150px;
+        }
+        
+	</style>
+	 <script>
+
+
+			function checkName() {
+				var name = document.getElementById("idName").value;
+				var namelen = name.length;
+				var re = /^[\u4e00-\u9fff]{2,}$/;
+				if (re.test(name)) {
+					document.getElementById("s").innerHTML = "<img src='Images/correct.jpg'>正確";
+					return true;
+				}
+				else if (namelen == 0) {
+					document.getElementById("s").innerHTML = "<img src='Images/error.png'><span style='color:Red'>姓名不可為空白";
+				}
+				else {
+					document.getElementById("s").innerHTML = "<span style='color:Red'>請輸入中文"
+					return true;
+				}
+			}
+			function checkPasword() {
+				var passowrd = document.getElementById("idPassword").value;
+				var passowrdlen = passowrd.length;
+				var re = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,30}$/;
+				// var re = ^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{6,}$/;
+				if (re.test(passowrd)) {
+					document.getElementById("s2").innerHTML = "<img src='Images/correct.jpg'>正確";
+					return true;
+				}
+				else if (passowrdlen == 0) {
+					document.getElementById("s2").innerHTML = "<img src='Images/error.png'><span style='color:Red'>密碼不可為空白"
+				}
+				else if (passowrdlen < 6) {
+					document.getElementById("s2").innerHTML = "<img src='Images/error.png'><span style='color:Red'>密碼請至少輸入6碼"
+				}
+				else {
+					document.getElementById("s2").innerHTML = "<img src='Images/error.png'><span style='color:Red'>請輸入英文"
+					return true;
+				}
+			}
+			function checkDate() {
+				var d = document.getElementById("idDate").value;
+				var dateArray = d.split("/")
+				var theDate = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+				if (dateArray[2] != theDate.getDate() || dateArray[1] - 1 != theDate.getMonth()) {
+					document.getElementById("s3").innerHTML = "<img src='Images/error.png'><span style='color:Red'>請輸入正確日期</span>";
+				}
+				else {
+					document.getElementById("s3").innerHTML = "<img src='Images/correct.jpg'>正確";
+				}
+			}
+	
+			document.addEventListener("DOMContentLoaded", function () {
+				document.getElementById("idName").addEventListener("blur", blur1);
+				document.getElementById("idName").addEventListener("focus", focus1);
+				document.getElementById("idName").addEventListener("change", change1);
+				document.getElementById("idPassword").addEventListener("blur", blur2);
+				document.getElementById("idPassword").addEventListener("focus", focus2);
+				document.getElementById("idPassword").addEventListener("change", change2);
+				document.getElementById("idDate").addEventListener("blur", blur3);
+				document.getElementById("idDate").addEventListener("focus", focus3);
+				document.getElementById("idDate").addEventListener("change", change3);
+				document.getElementById("idName").addEventListener("dblclick", dblclick1);
+				document.getElementById("idPassword").addEventListener("dblclick", dblclick2);
+				document.getElementById("idDate").addEventListener("dblclick", dblclick3);
+			});
+			function blur1() {
+				checkName();
+			}
+			function focus1() {
+				document.getElementById("idName").style.color = "red";
+			}
+			function change1() {
+				checkName();
+			}
+			function blur2() {
+				checkPasword();
+			}
+			function focus2() {
+				document.getElementById("idPassword").style.color = "red";
+			}
+			function change2() {
+				checkPasword();
+			}
+			function blur3() {
+				checkDate();
+			}
+			function focus3() {
+				document.getElementById("idDate").style.color = "red";
+			}
+			function change3() {
+				checkDate();
+			}
+			function dblclick1(){
+				document.getElementById("idName").value="";
+			}
+			function dblclick2(){
+				document.getElementById("idPassword").value="";
+			}
+			function dblclick3(){
+				document.getElementById("idDate").value="";
+			}
+	
+			// function ondblclick(){
+			// document.getElementById("idName").value="";
+			// }
+		</script>	
+	</head>
+	<body>
+		
+	<div class="gtco-loader"></div>
+	
+	<div id="page">
+
+	
+	<div class="page-inner">
+
+	<div id="head-top" style="position: absolute; width: 100%; top: 0; ">
+		<div class="gtco-top">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 col-xs-6">
+						<div id="gtco-logo"><a href="index.html">Chris <em>.</em></a></div>
+					</div>
+					<div class="col-md-6 col-xs-6 social-icons">
+						<ul class="gtco-social-top">
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-linkedin"></i></a></li>
+							<li><a href="#"><i class="icon-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<nav class="gtco-nav sticky-banner" role="navigation">
+				<div class="gtco-container">
+					
+					<div class="row">
+						<div class="col-xs-12 text-center menu-1">
+							<ul>
+								<li><a href="index.html">Index</a></li>
+								<li class="has-dropdown">
+									<a href="9x9.html">9X9 Table</a>
+									
+								</li>
+								<li class="active"><a href="form.html">Form</a></li>
+								<li><a href="star.html">Star</a></li>
+								<li><a href="banner.html">Banner</a></li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</nav>
+	</div>
+	
+	<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_4.jpg)" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row row-mt-15em">
+				
+
+				
+					<form action="#" method="get">
+							<fieldset>
+								<legend>Form Check</legend>
+								<div>
+									<label>姓名:</label>
+									<input type="text" name=name1 value="請輸入姓名" id="idName">
+									<span id="s"></span>
+									<div>(1.不可空白，2.至少2個字以上，3必須全部字為中文字)</div>
+								</div>
+								<hr>
+								<div>
+									<label>密碼:</label>
+									<input type="text" name=password1 value="請輸入密碼" id="idPassword">
+									<span id="s2"></span>
+									<div>(1.不可空白，2.至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</div>
+								</div>
+								<hr>
+								<div>
+									<label>日期:</label>
+									<input type="text" name="date1" value="ex:2000/2/29" id="idDate">
+									<span id="s3"></span>
+									<div>(格式:西元年/月/日 yyyy/MM/dd)</div>
+								</div>
+								<hr>
+								<input type="submit" class="a1" value="送出" >
+								<input type="reset" class="a1" value="清除">
+							</fieldset>
+						</form>
+				
+				<div class="col-md-12 mt-text text-center animate-box" data-animate-effect="fadeInUp">
+					
+					
+					
+
+
+
+					<!-- <h1><strong></strong></h1>	 -->
+					<!-- <h2></h2>此處輸入資料 -->
+					
+				</div>
+			</div>
+			
+		</div>
+
+		
+	</header>
+	<footer>
+			<div>
+				<div class="row copyright">
+					<div class="col-md-12">
+						<p class="pull-left">
+							<small class="block">&copy; 2018 Free HTML5. All Rights Reserved.</small>
+							<small class="block">Designed by Chris</small>
+						</p>
+						<p class="pull-right">
+							<ul class="gtco-social-icons pull-right">
+								<li>
+									<a href="#">
+										<i class="icon-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-facebook"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-linkedin"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-dribbble"></i>
+									</a>
+								</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+	</div>
+	</footer>
+	
+
+	
+
+	
+	
+	
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/sticky.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src="js/jquery.countTo.js"></script>
+
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
+
